@@ -1,7 +1,7 @@
 {
 	"name": "@gullerya/resource-pool",
 	"version": "0.0.0",
-	"description": "resource pool provides a convenient and robust way to manage resources in a controlled and predictable way",
+	"description": "Resources pooling for JS (generic abstraction, NodeJS worker_threads, Web Workers, etc)",
 	"keywords": [
 		"resource",
 		"pool",
