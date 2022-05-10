@@ -1,0 +1,43 @@
+name: Publish (NPM)
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.RP_CI_AT }}
+
+      - name: Setup NodeJS 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build -- --cdn
+
+      - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: npm publish --public-access
+
+      # Trigger deploy to CDN
+      - name: Obtain release version
+        run: echo "RELEASE_VERSION=$(cat package.json | jq -r '.version')" >> $GITHUB_ENV
+      - name: Tirgger deploy to CDN
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: "Deploy (CDN)"
+          token: ${{ secrets.RP_CI_AT }}
+          inputs: '{ "version": "${{ env.RELEASE_VERSION }}" }'
