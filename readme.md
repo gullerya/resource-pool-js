@@ -5,34 +5,11 @@
 [![Codecov](https://img.shields.io/codecov/c/github/gullerya/object-observer/main.svg)](https://codecov.io/gh/gullerya/object-observer/branch/main)
 [![Codacy](https://img.shields.io/codacy/grade/a3879d7077eb4eef83a591733ad7c579.svg?logo=codacy)](https://www.codacy.com/app/gullerya/object-observer)
 
-# `object-observer`
+# `resource-pool`
 
-__`object-observer`__ provides a deep observation of a changes performed on an object/array graph.
+TBD
 
-Main aspects and features:
-- implemented via native __Proxy__ (revokable)
-- observation is 'deep', yielding changes from a __sub-graphs__ too
-- nested objects of the observable graph are observables too
-- changes delivered in a __synchronous__ way by default, __asynchronous__ delivery is optionally available as per `Observable` configuration; [more details here](docs/sync-async.md)
-- observed path may optionally be filtered as per `observer` configuration; [more details here](docs/filter-paths.md)
-- original objects are __cloned__ while turned into `Observable`s
-- __array__ specifics:
-  - generic object-like mutations supported
-  - intrinsic `Array` mutation methods supported: `pop`, `push`, `shift`, `unshift`, `reverse`, `sort`, `fill`, `splice`, `copyWithin`
-  - massive mutations delivered in a single callback, usually having an array of an atomic changes
-- __typed array__ specifics:
-  - generic object-like mutations supported
-  - intrinsic `TypedArray` mutation methods supported: `reverse`, `sort`, `fill`, `set`, `copyWithin`
-  - massive mutations delivered in a single callback, usually having an array of an atomic changes
-- intrinsic mutation methods of `Map`, `WeakMap`, `Set`, `WeakSet` (`set`, `delete`) etc __are not__ observed (see this [issue](https://github.com/gullerya/object-observer/issues/1) for more details)
-- following host objects (and their extensions) are __skipped__ from cloning / turning into observables: `Date`
-
-Supported:
-![CHROME](docs/browser-icons/chrome.png)<sub>71+</sub> |
-![FIREFOX](docs/browser-icons/firefox.png)<sub>65+</sub> |
-![EDGE](docs/browser-icons/edge-chromium.png)<sub>79+</sub> |
-![SAFARI](docs/browser-icons/safari-ios.png)<sub>12.1</sub> |
-![NODE JS](docs/browser-icons/nodejs.png) <sub>12.0.0+</sub>
+---
 
 Performance report can be found [here](docs/performance-report.md).
 
